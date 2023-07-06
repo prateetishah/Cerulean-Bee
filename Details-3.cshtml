@@ -1,0 +1,104 @@
+﻿@model RDB10_Cerulean_Bee.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Shift)
+        </dt>
+
+        <dd>
+            @{ 
+                var shift = "";
+                if (Model.Employee_Shift == 0)
+                {
+                    shift = "Part-Time";
+                } else
+                {
+                    shift = "Full-Time";
+                }
+            }
+            @shift
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Horly_Wage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Horly_Wage)
+        </dd>
+
+    </dl>
+</div>
+
+<table class="table table-bordered table-striped">
+    <caption>Employee Work Log</caption>
+    <tr>
+        <th>
+            Date
+        </th>
+        <th>
+            Order
+        </th>
+        <th>
+            Art Item
+        </th>
+        <th>
+            Task
+        </th>
+        <th>
+            Time (in Hours)
+        </th>
+    </tr>
+    @{ 
+        foreach (var location in Model.ArtLocations)
+        {
+    <tr>
+        <td>
+            @Html.TextBox("Log Date", location.Completion_Date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control datepicker", @value = DateTime.Now })
+        </td>
+        <td>
+            @location.ApparelItem.Apparel_Item  @location.ApparelItem.Base_Color
+        </td>
+        <td>
+            @location.Art_Location
+        </td>
+        <td>
+            @Html.TextBox("Task Details", location.Description)
+        </td>
+        <td>
+            @Html.TextBox("Completion Hours", null, new { @type = "number" })
+        </td>
+    </tr>
+        }
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Employee_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

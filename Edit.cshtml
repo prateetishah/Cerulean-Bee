@@ -1,0 +1,182 @@
+﻿@model RDB10_Cerulean_Bee.Models.ArtOrder
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>ArtOrder</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Order_Number)
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Customer_Id, "Customer_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Customer_Id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Customer_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Set_Up_Charges, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Set_Up_Charges, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Set_Up_Charges, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Deposit, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Deposit, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Deposit, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Order_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Order_Date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control datepicker", @value=Model.Order_Date })
+            @Html.ValidationMessageFor(model => model.Order_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Due_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Due_Date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control datepicker", @value = Model.Due_Date })
+            @Html.ValidationMessageFor(model => model.Due_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Approval_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Approval_Date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control datepicker", @value = Model.Approval_Date })
+            @Html.ValidationMessageFor(model => model.Approval_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Scheduled_Print_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Scheduled_Print_Date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(model => model.Scheduled_Print_Date, "", new { @class = "text-danger", @value = Model.Scheduled_Print_Date })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Delivery_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Delivery_Date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control datepicker", @value = Model.Delivery_Date })
+            @Html.ValidationMessageFor(model => model.Delivery_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem, "Apparel", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Apparel_Item_Id", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Apparel_Item_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Art_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Art_Date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control datepicker", @value = Model.Art_Date })
+            @Html.ValidationMessageFor(model => model.Art_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Art_Film_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Art_Film_Date, "{0:yyyy-MM-dd}", new { @type = "date", @class = "form-control datepicker", @value = Model.Art_Film_Date })
+            @Html.ValidationMessageFor(model => model.Art_Film_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.ApparelItem.Apparel_Item_Id)
+    @Html.HiddenFor(model => model.ApparelItem.Apparel_Item)
+    @Html.HiddenFor(model => model.ApparelItem.Base_Color)
+    @Html.HiddenFor(model => model.ApparelItem.Event_Description)
+    @Html.HiddenFor(model => model.ApparelItem.Theme)
+    @Html.HiddenFor(model => model.ApparelItem.Max_Colors)
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem.Art_Location_Id, "Art Location", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>
+                        Location on Apparel
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Colors
+                    </th>
+                    <th>
+                        Employee
+                    </th>
+                    <th>
+                        Completion Date
+                    </th>
+                </tr>
+                @{
+                    for (int i = 0; i < Model.ApparelItem.locations.Count; i++)
+                    {
+                <tr>
+                    @Html.HiddenFor(model => model.ApparelItem.locations[i].Apparel_Item_Id)
+                    @Html.HiddenFor(model => model.ApparelItem.locations[i].Art_Location_Id)
+                    <td>
+                        @Html.DisplayFor(model => model.ApparelItem.locations[i].Art_Location)
+                        @Html.HiddenFor(model => model.ApparelItem.locations[i].Art_Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ApparelItem.locations[i].Description)
+                        @Html.HiddenFor(model => model.ApparelItem.locations[i].Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ApparelItem.locations[i].Colors)
+                        @Html.HiddenFor(model => model.ApparelItem.locations[i].Colors)
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.ApparelItem.locations[i].Employee_Id, new SelectList(ViewBag.Employee_Id, "employee_Id", "employee_Name", Model.ApparelItem.locations[i].Employee_Id))
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ApparelItem.locations[i].Completion_Date, "{0:yyyy-MM-dd}", new { @type="date", @class="form-control datepicker", @value = Model.ApparelItem.locations[i].Completion_Date })
+                    </td>
+                </tr>
+                    }
+                }
+
+            </table>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

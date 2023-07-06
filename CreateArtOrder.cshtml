@@ -1,0 +1,149 @@
+﻿@model RDB10_Cerulean_Bee.Models.ArtOrder
+
+@{
+    ViewBag.Title = "CreateArtOrder";
+}
+
+<h2>CreateArtOrder</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>ArtOrder</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.Customer_Id)
+    <div class="form-group">
+        @Html.LabelFor(model => model.customerDetails.Customer_Name, "Customer", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.customerDetails.Customer_Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.customerDetails.Customer_Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Apparel_Item_Id, "Apparel Item", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ApparelItem.Apparel_Item, Model.apparels, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Apparel_Item_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem.Vendor_Id, "Vendor", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ApparelItem.Vendor.Vendor_Name, new SelectList(ViewBag.Vendor_Id, Model.ApparelItem.Vendor.Vendor_Name), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ApparelItem.Vendor_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem.Vendor.Apparel_Size_Id, "Apparel Size", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ApparelItem.Vendor.Apparel_Size_Id, new SelectList(ViewBag.Vendor_Apparel_Size_Id, "apparel_Size_Id", "apparel_Size", Model.ApparelItem.Vendor.Apparel_Size_Id), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ApparelItem.Vendor.Apparel_Size_Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem.Base_Color, "Base Color", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ApparelItem.Base_Color, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ApparelItem.Base_Color, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem.Event_Description, "Event", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ApparelItem.Event_Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ApparelItem.Event_Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem.Theme, "Theme", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ApparelItem.Theme, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ApparelItem.Theme, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem.Max_Colors, "Maximum Allowed Colors", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ApparelItem.Max_Colors, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ApparelItem.Max_Colors, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Deposit, "Deposit", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Deposit, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Deposit, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Order_Date, "Order Date", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Order_Date.Value, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Order_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ApparelItem.Art_Location_Id, "Art Location", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <table>
+                <tr>
+                    <th>
+                        Location on Apparel
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Colors
+                    </th>
+                </tr>
+                @for (int i = 0; i < 5; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.EditorFor(model => model.ApparelItem.locations[i].Art_Location)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.ApparelItem.locations[i].Description)
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.ApparelItem.locations[i].Colors)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

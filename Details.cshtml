@@ -1,0 +1,106 @@
+﻿@model RDB10_Cerulean_Bee.Models.ArtOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ArtOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Set_Up_Charges)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Set_Up_Charges)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deposit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deposit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Due_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Due_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Approval_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Approval_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Scheduled_Print_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Scheduled_Print_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delivery_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delivery_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Art_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Art_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Art_Film_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Art_Film_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApparelItem.Base_Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApparelItem.Base_Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Customer_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Customer_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Order_Number }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,148 @@
+﻿@model RDB10_Cerulean_Bee.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.E_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.E_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)%
+        </dd>
+
+    </dl>
+</div>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            Order Number
+        </th>
+        <th>
+            Order Date
+        </th>
+        <th>
+            Apparel
+        </th>
+        <th>
+            Base Color
+        </th>
+        <th>
+            Event
+        </th>
+        <th>
+            Theme
+        </th>
+        <th>
+            Apparel Size
+        </th>
+        <th>
+            Vendor
+        </th>
+        <th>
+            Order Total
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Delivery Date
+        </th>
+    </tr>
+    @{
+        foreach (var order in Model.ArtOrders)
+        {
+            <tr>
+                <td>
+                    @order.Order_Number
+                </td>
+                <td>
+                    @order.Order_Date
+                </td>
+                <td>
+                    @order.ApparelItem.Apparel_Item
+                </td>
+                <td>
+                    @order.ApparelItem.Base_Color
+                </td>
+                <td>
+                    @order.ApparelItem.Event_Description
+                </td>
+                <td>
+                    @order.ApparelItem.Theme
+                </td>
+                <td>
+                    @if (order.ApparelItem.Vendor != null)
+                    {
+                        @order.ApparelItem.Vendor.ApparelSize.Apparel_Size
+                    }
+                </td>
+                <td>
+                    @if (order.ApparelItem.Vendor != null)
+                    {
+                        @order.ApparelItem.Vendor.Vendor_Name
+                    }
+                </td>
+                <td>
+                    @order.Order_Total
+                </td>
+                <td>
+                    @order.Due_Date
+                </td>
+                <td>
+                    @order.Delivery_Date
+                </td>
+            </tr>
+            <tr>
+                @foreach (var location in order.ApparelItem.ArtLocations)
+                {
+                    <td>
+                        <b>Art Location:</b> @location.Art_Location <br />
+                        <b>Description:</b> @location.Description <br />
+                        <b>Colors:</b> @location.Colors <br />
+                        <b>Completion Date:</b> @location.Completion_Date
+                    </td>
+                }
+            </tr>
+        }
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Customer_Id }) |
+    @Html.ActionLink("Create Art Order", "CreateArtOrder", new { id = Model.Customer_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
